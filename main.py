@@ -32,11 +32,8 @@ def print_guessed(guessed_letters, word):
 
 
 def game(word):
-    guessed = False
     guessed_letters = []
     fails = 0
-    print("Welcome to hangman")
-    print("\n")
 
     while fails < 6:
         guess = enter_letter()
@@ -47,10 +44,8 @@ def game(word):
         else:
             guessed_letters.append(guess)
             print(guessed_letters)
-        if guess in word:
-            print("yes")
-        else:
-            print("no")
+        if not guess in word:
+            #print("no")
             fails +=1
             hangman(fails)
 
@@ -59,6 +54,8 @@ def game(word):
             print("You win!")
             break
 
+    print("You lose!")
+    print("The word was", word)
 
 def hangman(fails):
     failed = ["""
@@ -120,13 +117,20 @@ def hangman(fails):
            __|__"""]
     print(failed[fails])
 
-def test():
-    word = get_word()
+def play():
+    print("Welcome to hangman\n")
+    while True:
+        word = get_word()
+        print("_" * len(word))
 
-    #Debugging code
-    print("Word to guess is ", word)
+        #Debugging code
+        #print("Word to guess is ", word)
 
-    game(word)
+        game(word)
+        print("Do you want to play again? ")
+        play_again = input("Enter 'y' for yes and 'n' for no: ")
+        if play_again != "y":
+            break
 
-test()
+play()
 
