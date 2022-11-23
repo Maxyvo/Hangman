@@ -1,3 +1,9 @@
+# Name: Hangman
+# Author: Maxime Yvonet
+# Date Created: November 22, 2022
+# Date Last Modified: November 23, 2022
+# Purpose: To guess a random word by inputting letters with a maximum of 6 tries
+
 import random
 from words import word_list
 
@@ -11,13 +17,13 @@ def game(word):
     guessed_letters = []
     tries = 6
     print("Welcome to hangman")
-    print(hangman(tries))
+    #print(hangman(tries))
     print(word_length)
     print("\n")
-    guess = input("Please guess a letter: ")
+    while True:
+        guess = input("Please guess a letter: ")
 
-
-def hangman(tries):
+'''def hangman(tries):
     tried = ["""
              _____ 
            |    |  
@@ -76,5 +82,11 @@ def hangman(tries):
            |      
            __|__"""]
     return hangman[tried]
+    '''
 
+def test():
+    word = get_word()
+    game(word)
+
+test()
 
