@@ -11,19 +11,41 @@ def get_word():
     word = random.choice(word_list)
     return word
 
+def enter_letter():
+    while True:
+        guess = input("Please guess a letter: ")
+        if len(guess) == 1 and guess.isalpha():
+            # Convert to lower case
+            return guess.lower()
+        print("Must be a letter")
+
 def game(word):
     word_length = "_ " * len(word)
     guessed = False
     guessed_letters = []
-    tries = 6
+    fails = 0
     print("Welcome to hangman")
-    #print(hangman(tries))
     print(word_length)
     print("\n")
-    while True:
-        guess = input("Please guess a letter: ")
 
-'''def hangman(tries):
+    while fails < 6:
+        guess = enter_letter()
+        print(guess)
+        if guess in guessed_letters:
+            print("Already tried")
+            continue
+        else:
+            guessed_letters.append(guess)
+            print(guessed_letters)
+        if guess in word:
+            print("yes")
+        else:
+            print("no")
+            fails +=1
+
+
+'''
+def hangman(tries):
     tried = ["""
              _____ 
            |    |  
@@ -86,6 +108,10 @@ def game(word):
 
 def test():
     word = get_word()
+
+    #Debugging code
+    print("Word to guess is ", word)
+
     game(word)
 
 test()
