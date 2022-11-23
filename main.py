@@ -19,13 +19,23 @@ def enter_letter():
             return guess.lower()
         print("Must be a letter")
 
+def print_guessed(guessed_letters, word):
+    unknown = 0
+    for c in word:
+        if c in guessed_letters:
+            print(c, end="")
+        else:
+            unknown += 1
+            print("_", end="")
+    print("\n")
+    return unknown
+
+
 def game(word):
-    word_length = "_ " * len(word)
     guessed = False
     guessed_letters = []
     fails = 0
     print("Welcome to hangman")
-    print(word_length)
     print("\n")
 
     while fails < 6:
@@ -42,11 +52,16 @@ def game(word):
         else:
             print("no")
             fails +=1
+            hangman(fails)
+
+        unknown = print_guessed(guessed_letters, word)
+        if unknown == 0:
+            print("You win!")
+            break
 
 
-'''
-def hangman(tries):
-    tried = ["""
+def hangman(fails):
+    failed = ["""
              _____ 
            |    |  
            |    |  
@@ -103,8 +118,7 @@ def hangman(tries):
            |   / \\ 
            |      
            __|__"""]
-    return hangman[tried]
-    '''
+    print(failed[fails])
 
 def test():
     word = get_word()
