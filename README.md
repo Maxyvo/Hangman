@@ -13,3 +13,4 @@ You win if you find the word with less than six wrong guesses.
 ## Note
 The list of words can be updated by adding to the words.txt text file and needs to contain one word per line.
 
+
