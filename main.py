@@ -1,12 +1,16 @@
 # Name: Hangman
 # Author: Maxime Yvonet
 # Date Created: November 22, 2022
-# Date Last Modified: November 23, 2022
+# Date Last Modified: December 9, 2022
 # Purpose: To guess a random word by inputting letters with a maximum of 6 tries
 
 import random
-from words import word_list
 
+word_list = []
+words = open("words.txt", "r")
+def import_words():
+    for i in words:
+        word_list.append(i.strip())
 def get_word():
     word = random.choice(word_list)
     return word
@@ -39,6 +43,7 @@ def game(word):
         guess = enter_letter()
         print(guess)
         if guess in guessed_letters:
+            print(guessed_letters)
             print("Already tried")
             continue
         else:
@@ -54,7 +59,8 @@ def game(word):
             print("You win!")
             break
 
-    print("You lose!")
+    if fails == 6:
+        print("You lose!")
     print("The word was", word)
 
 def hangman(fails):
@@ -120,6 +126,7 @@ def hangman(fails):
 def play():
     print("Welcome to hangman\n")
     while True:
+        import_words()
         word = get_word()
         print("_" * len(word))
 
@@ -131,6 +138,7 @@ def play():
         play_again = input("Enter 'y' for yes and 'n' for no: ")
         if play_again != "y":
             break
+        print("\n")
 
 play()
 
