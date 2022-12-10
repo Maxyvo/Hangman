@@ -11,13 +11,14 @@ import random
 # Empty word list
 word_list = []
 
-# Open word txt file and read
-words = open("words.txt", "r")
-
-# Append every word from the word txt file to the empty word list
 def import_words():
+    # Open word txt file and read
+    words = open("words.txt", "r")
+    # Append every word from the word txt file to the empty word lis
     for i in words:
         word_list.append(i.strip())
+    # Close file
+    words.close()
 
 # Choose a random word from the list
 def get_word():
